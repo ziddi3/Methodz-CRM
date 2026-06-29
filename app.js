@@ -13,7 +13,7 @@ function createId() {
     return globalThis.crypto.randomUUID();
   }
 
-  return `contact-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  return `contact-${Date.now()}-${Math.random().toString(36).slice(2, 12)}`;
 }
 
 function createTimestamp() {
@@ -151,9 +151,11 @@ function updateSummary() {
   document.getElementById("potentialContacts").textContent = String(totals.potentials);
   document.getElementById("clientContacts").textContent = String(totals.clients);
 
-  const mostRecentUpdate = contacts
-    .map((contact) => contact.lastUpdated)
-    .sort((left, right) => new Date(right) - new Date(left))[0];
+  const mostRecentUpdate = contacts.reduce(
+    (latest, contact) =>
+      !latest || new Date(contact.lastUpdated) > new Date(latest) ? contact.lastUpdated : latest,
+    ""
+  );
 
   document.getElementById("lastUpdated").textContent = mostRecentUpdate
     ? `Last update: ${formatTimestamp(mostRecentUpdate)}`

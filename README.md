@@ -1,4 +1,4 @@
-# Methodz-CRM
+# Methodz CRM
 
 A custom CRM built for Methodz to manage new leads, potential clients, and partner cross-sell opportunities from one place.
 
