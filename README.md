@@ -14,9 +14,9 @@ A custom CRM built for Methodz to manage new leads, potential clients, and partn
 
 This project is a lightweight static app with no build step.
 
-Open `/home/runner/work/Methodz-CRM/Methodz-CRM/index.html` directly in a browser, or serve the repository root with a static file server such as:
+Open `index.html` directly in a browser from the project root, or serve the repository with a static file server such as:
 
 ```bash
-cd /home/runner/work/Methodz-CRM/Methodz-CRM
+cd /path/to/Methodz-CRM
 python3 -m http.server 8000
 ```
