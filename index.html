@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Methodz CRM</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Methodz CRM</p>
+        <h1>Centralize leads, clients, and partner opportunities</h1>
+        <p class="hero-copy">
+          Track every contact, capture the service they need now, and surface the
+          next partner recommendation when a new opportunity appears.
+        </p>
+      </div>
+      <div class="hero-panel">
+        <p>Custom-built workflow</p>
+        <strong id="lastUpdated">Ready for your next follow-up</strong>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="dashboard" aria-label="CRM summary">
+        <article class="card">
+          <span>Total contacts</span>
+          <strong id="totalContacts">0</strong>
+        </article>
+        <article class="card">
+          <span>New leads</span>
+          <strong id="leadContacts">0</strong>
+        </article>
+        <article class="card">
+          <span>Potential clients</span>
+          <strong id="potentialContacts">0</strong>
+        </article>
+        <article class="card">
+          <span>Active clients</span>
+          <strong id="clientContacts">0</strong>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Contact record</p>
+            <h2>Add or update a CRM contact</h2>
+          </div>
+        </div>
+
+        <form id="contactForm" class="contact-form">
+          <input id="contactId" type="hidden" />
+
+          <label>
+            Full name
+            <input id="name" name="name" type="text" required />
+          </label>
+
+          <label>
+            Company
+            <input id="company" name="company" type="text" placeholder="Optional" />
+          </label>
+
+          <label>
+            Email
+            <input id="email" name="email" type="email" required />
+          </label>
+
+          <label>
+            Phone
+            <input id="phone" name="phone" type="tel" placeholder="Optional" />
+          </label>
+
+          <label>
+            Contact stage
+            <select id="status" name="status" required>
+              <option value="New Lead">New Lead</option>
+              <option value="Potential Client">Potential Client</option>
+              <option value="Active Client">Active Client</option>
+            </select>
+          </label>
+
+          <label>
+            Service needed
+            <select id="primaryService" name="primaryService" required>
+              <option value="Web Design">Web Design</option>
+              <option value="SEO Strategy">SEO Strategy</option>
+              <option value="Paid Ads">Paid Ads</option>
+              <option value="Brand Identity">Brand Identity</option>
+              <option value="CRM Setup">CRM Setup</option>
+            </select>
+          </label>
+
+          <label>
+            Recommended partner service
+            <input
+              id="partnerService"
+              name="partnerService"
+              type="text"
+              readonly
+              aria-readonly="true"
+            />
+          </label>
+
+          <label>
+            Next step
+            <input
+              id="nextAction"
+              name="nextAction"
+              type="text"
+              placeholder="Book intro call, send proposal, etc."
+            />
+          </label>
+
+          <label class="full-width">
+            Notes
+            <textarea
+              id="notes"
+              name="notes"
+              rows="4"
+              placeholder="Add lead context, preferences, or follow-up notes"
+            ></textarea>
+          </label>
+
+          <div class="form-actions full-width">
+            <button type="submit">Save contact</button>
+            <button id="resetButton" type="button" class="secondary">Clear form</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Contact list</p>
+            <h2>Methodz lead and client pipeline</h2>
+          </div>
+
+          <div class="filters">
+            <label>
+              Search
+              <input id="searchInput" type="search" placeholder="Name, company, email, service" />
+            </label>
+            <label>
+              Filter by stage
+              <select id="statusFilter">
+                <option value="All">All</option>
+                <option value="New Lead">New Lead</option>
+                <option value="Potential Client">Potential Client</option>
+                <option value="Active Client">Active Client</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Contact</th>
+                <th>Stage</th>
+                <th>Current need</th>
+                <th>Partner opportunity</th>
+                <th>Next step</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="contactsTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <template id="emptyStateTemplate">
+      <tr>
+        <td colspan="6" class="empty-state">
+          No contacts match the current filters yet.
+        </td>
+      </tr>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
